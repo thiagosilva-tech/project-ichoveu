@@ -12,7 +12,7 @@ export const searchCities = (term) => {
     });
 };
 
-export const getWeatherByCity = async (cityURL) => {
+export const getWeatherByCity = (cityURL) => {
 //   seu código aqui
   return fetch(`http://api.weatherapi.com/v1/current.json?key=${token}&q=${cityURL}&aqi=no`)
     .then((res) => res.json())
@@ -25,4 +25,10 @@ export const getWeatherByCity = async (cityURL) => {
         icon: data.current.condition.icon,
       };
     });
+};
+
+export const getPrevisao = (url) => {
+  return fetch(`http://api.weatherapi.com/v1/forecast.json?lang=pt&key=${token}&q=${url}&days=7`)
+    .then((res) => res.json())
+    .then(({ forecast }) => forecast);
 };
