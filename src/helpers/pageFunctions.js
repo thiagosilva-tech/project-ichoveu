@@ -116,10 +116,17 @@ export function handleSearch(event) {
 
   const searchInput = document.getElementById('search-input');
   const searchValue = searchInput.value;
+  const citiesUl = document.getElementById('cities');
   searchCities(searchValue)
     .then((res) => {
       if (res) {
-        res.forEach((city) => getWeatherByCity(city.url));
+        res.forEach((city) => {
+          getWeatherByCity(city.url)
+            .then((cidade) => {
+              const cityElement = createCityElement(cidade);
+              citiesUl.appendChild(cityElement);
+            });
+        });
       }
     })
     .catch((err) => window.alert(err.message));

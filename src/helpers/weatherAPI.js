@@ -16,11 +16,13 @@ export const getWeatherByCity = async (cityURL) => {
 //   seu código aqui
   return fetch(`http://api.weatherapi.com/v1/current.json?key=${token}&q=${cityURL}&aqi=no`)
     .then((res) => res.json())
-    .then(({ current }) => {
+    .then((data) => {
       return {
-        temp: current.temp_c,
-        condition: current.condition.text,
-        icon: current.condition.icon,
+        name: data.location.name,
+        country: data.location.country,
+        temp: data.current.temp_c, // temperatura em graus celsius
+        condition: data.current.condition.text,
+        icon: data.current.condition.icon,
       };
     });
 };
