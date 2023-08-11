@@ -109,6 +109,7 @@ export function createCityElement(cityInfo) {
 
 /**
  * Lida com o evento de submit do formulário de busca
+ *
  */
 export function handleSearch(event) {
   event.preventDefault();
