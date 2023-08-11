@@ -116,8 +116,12 @@ export function handleSearch(event) {
 
   const searchInput = document.getElementById('search-input');
   const searchValue = searchInput.value;
-  searchCities(searchValue).then((res) => {
-    res.forEach((city) => getWeatherByCity(city.url));
-  });
+  searchCities(searchValue)
+    .then((res) => {
+      if (res) {
+        res.forEach((city) => getWeatherByCity(city.url));
+      }
+    })
+    .catch((err) => window.alert(err.message));
   // seu código aqui
 }
